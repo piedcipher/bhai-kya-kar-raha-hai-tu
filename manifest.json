@@ -1,0 +1,18 @@
+{
+    "name": "Bhai Kya Kar Raha Hai Tu",
+    "version": "1.0.0",
+    "description": "Bhai Kya Kar Raha Hai Tu",
+    "manifest_version": 3,
+    "author": "Tirth Patel",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Bhai Kya Kar Raha Hai Tu"
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
