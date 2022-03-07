@@ -1,9 +1,11 @@
 const blockList = document.getElementById("block-list");
 
+// clear all the urls in the block-list
 clearBlockList = () => {
 
 };
 
+// removes the url in the block-list
 removeUrl = (url) => {
     console.log(url);
     chrome.storage.sync.remove(url.toString(), () => {
@@ -11,7 +13,11 @@ removeUrl = (url) => {
     });
 };
 
+// stores the url in the block-list
 storeUrl = (url) => {
+    if (!url && url.trim().length === 0) {
+        return;
+    }
     chrome.storage.sync.set({
         [url]: url
     }, () => {
@@ -19,14 +25,22 @@ storeUrl = (url) => {
     });  
 };
 
+// gets the current tab's url and executes the supplied function
+getCurrentTabThenExecute = (functionToExecute) => {
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        functionToExecute(tabs[0].url);
+    });
+}
+
 document.getElementById("add-to-blocklist").onclick = (e) => {
-    storeUrl(document.getElementById("url-value").value);
+    getCurrentTabThenExecute(storeUrl);
 }
 
 document.getElementById("remove-from-blocklist").onclick = (e) => {
-    removeUrl(document.getElementById("url-value").value);
+    getCurrentTabThenExecute(removeUrl);
 }
 
+// renders block-list on popup (UI)
 displayBlockList = () => {
     blockList.innerHTML = '';
     chrome.storage.sync.get(null, (items) => {

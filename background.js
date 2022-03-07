@@ -11,14 +11,10 @@ bhaiKyaKarRahaHaiTu = () => {
     });
 };
 
-chrome.tabs.onActivated.addListener(
-    (e) => {
-        bhaiKyaKarRahaHaiTu();
-    },
-);
-
 chrome.tabs.onUpdated.addListener(
-    (e) => {
-        bhaiKyaKarRahaHaiTu();
+    (tabId, changeInfo, tab) => {
+        if (changeInfo.status === "complete") {
+            bhaiKyaKarRahaHaiTu();
+        }
     },
 );
