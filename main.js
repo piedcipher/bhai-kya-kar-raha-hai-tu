@@ -29,7 +29,7 @@ document.getElementById("remove-from-blocklist").onclick = (e) => {
 
 displayBlockList = () => {
     blockList.innerHTML = '';
-    chrome.storage.sync.get(null, function(items) {
+    chrome.storage.sync.get(null, (items) => {
         var allKeys = Object.keys(items);
         allKeys.forEach(e => {
             blockList.innerHTML += `<li>${e}</li>`;

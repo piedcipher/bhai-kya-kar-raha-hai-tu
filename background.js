@@ -12,13 +12,13 @@ bhaiKyaKarRahaHaiTu = () => {
 };
 
 chrome.tabs.onActivated.addListener(
-    function (e) {
+    (e) => {
         bhaiKyaKarRahaHaiTu();
     },
 );
 
 chrome.tabs.onUpdated.addListener(
-    function (e) {
+    (e) => {
         bhaiKyaKarRahaHaiTu();
     },
 );
