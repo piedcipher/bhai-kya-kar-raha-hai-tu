@@ -1,13 +1,16 @@
-const blockList = document.getElementById("block-list");
+document.getElementById("clear-all").onclick = (e) => {
+    clearBlockList();
+};
 
 // clear all the urls in the block-list
 clearBlockList = () => {
-
+    chrome.storage.sync.get(null, (blockList) => {
+        Object.keys(blockList).forEach(e => removeUrl(e));
+    });
 };
 
 // removes the url in the block-list
 removeUrl = (url) => {
-    console.log(url);
     chrome.storage.sync.remove(url.toString(), () => {
         displayBlockList();
     });
@@ -15,13 +18,16 @@ removeUrl = (url) => {
 
 // stores the url in the block-list
 storeUrl = (url) => {
-    if (!url && url.trim().length === 0) {
+    if (!url && url.trim().length === 0 && url === "https://imgur.com/uNuKDAZ.jpg") {
         return;
     }
     chrome.storage.sync.set({
         [url]: url
     }, () => {
         displayBlockList();
+        chrome.tabs.create({
+            "url": "https://imgur.com/uNuKDAZ.jpg"
+        });
     });  
 };
 
@@ -32,26 +38,31 @@ getCurrentTabThenExecute = (functionToExecute) => {
     });
 }
 
+// adds current tab's url in block-list
 document.getElementById("add-to-blocklist").onclick = (e) => {
     getCurrentTabThenExecute(storeUrl);
 }
 
-document.getElementById("remove-from-blocklist").onclick = (e) => {
-    getCurrentTabThenExecute(removeUrl);
-}
-
 // renders block-list on popup (UI)
 displayBlockList = () => {
+    // clears the block-list
+    const blockList = document.getElementById("block-list");
     blockList.innerHTML = '';
+
+    // get all block-listed urls from this extension's storage
     chrome.storage.sync.get(null, (items) => {
         var allKeys = Object.keys(items);
+
+        // display all block-listed urls in UI
         allKeys.forEach(e => {
-            blockList.innerHTML += `<li>${e}</li>`;
+            blockList.innerHTML += `<li><a href=${e}>${e}</a><br><br><button class="remove-button" value="${e}">Remove</button></li><br><br><hr><br><br>`;
         });
-        const blockListTags = blockList.getElementsByTagName("li");
-        for (let i = 0; i < blockListTags.length; i++) {
-            blockListTags[i].onclick = (f) => {
-                removeUrl(blockListTags[i].innerHTML);
+        
+        const removeButtonTags = blockList.getElementsByClassName("remove-button");
+        for (let i = 0; i < removeButtonTags.length; i++) {
+            // adds onclick event to remove that url from block-list
+            removeButtonTags[i].onclick = (f) => {
+                removeUrl(removeButtonTags[i].value);
             };
         }
     });
