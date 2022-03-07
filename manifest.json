@@ -1,7 +1,7 @@
 {
     "name": "Bhai Kya Kar Raha Hai Tu",
-    "version": "1.0.0",
-    "description": "Bhai Kya Kar Raha Hai Tu",
+    "version": "0.0.1",
+    "description": "This extension shows 'bhai kya kar raha hai tu' meme when user opens a block-listed website.",
     "manifest_version": 3,
     "author": "Tirth Patel",
     "action": {
