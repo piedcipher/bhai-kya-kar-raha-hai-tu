@@ -18,7 +18,7 @@ removeUrl = (url) => {
 
 // stores the url in the block-list
 storeUrl = (url) => {
-    if (!url && url.trim().length === 0 && url === "https://imgur.com/uNuKDAZ.jpg") {
+    if (!url || url.trim().length === 0 || url === "https://i.imgur.com/uNuKDAZ.jpg") {
         return;
     }
     chrome.storage.sync.set({
@@ -55,7 +55,7 @@ displayBlockList = () => {
 
         // display all block-listed urls in UI
         allKeys.forEach(e => {
-            blockList.innerHTML += `<li><a href=${e}>${e}</a><br><br><button class="remove-button" value="${e}">Remove</button></li><br><br><hr><br><br>`;
+            blockList.innerHTML += `<li><a target="_blank" href=${e}>${e}</a><br><br><button class="remove-button" value="${e}">Remove</button></li><br><br><hr><br><br>`;
         });
         
         const removeButtonTags = blockList.getElementsByClassName("remove-button");
