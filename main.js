@@ -25,9 +25,6 @@ storeUrl = (url) => {
         [url]: url
     }, () => {
         displayBlockList();
-        chrome.tabs.create({
-            "url": "https://imgur.com/uNuKDAZ.jpg"
-        });
     });  
 };
 
