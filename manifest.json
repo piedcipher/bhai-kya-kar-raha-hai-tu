@@ -18,5 +18,10 @@
         "activeTab",
         "storage"
     ],
-    "options_page": "options.html"
+    "options_page": "options.html",
+    "icons": {
+        "16": "./assets/_16.png",
+        "48": "./assets/_48.png",
+       "128": "./assets/_128.png"
+    }
 }
