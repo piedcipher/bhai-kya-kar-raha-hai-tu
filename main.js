@@ -11,17 +11,17 @@ storeUrl = (url) => {
 };
 
 // adds current tab's url in block-list
-document.getElementById("add-to-blocklist").onclick = (e) => {
+document.querySelector("#add-to-blocklist").onclick = () => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         storeUrl(tabs[0].url);
     });
 }
 
 // opens block-list
-document.querySelector('#go-to-options').addEventListener('click', function() {
+document.querySelector('#go-to-options').onclick = () => {
     if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
     } else {
         window.open(chrome.runtime.getURL('options.html'));
     }
-});
+}

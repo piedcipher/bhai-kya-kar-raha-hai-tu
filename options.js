@@ -9,7 +9,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 // clear all the urls in the block-list
-document.getElementById("clear-all").onclick = (e) => {
+document.querySelector("#clear-all").onclick = (e) => {
     chrome.storage.sync.get(null, (blockList) => {
         Object.keys(blockList).forEach(e => removeUrl(e));
     });
@@ -24,7 +24,7 @@ removeUrl = (url) => {
 // renders block-list on popup (UI)
 displayBlockList = () => {
     // clears the block-list
-    const blockList = document.getElementById("block-list");
+    const blockList = document.querySelector("#block-list");
     blockList.innerHTML = '';
 
     // get all block-listed urls from this extension's storage
