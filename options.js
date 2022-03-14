@@ -1,10 +1,5 @@
+// listener for block-list
 chrome.storage.onChanged.addListener((changes, namespace) => {
-    // for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-    //     console.log(
-    //     `Storage key "${key}" in namespace "${namespace}" changed.`,
-    //     `Old value was "${oldValue}", new value is "${newValue}".`
-    //     );
-    // }
     displayBlockList();
 });
 
@@ -17,8 +12,7 @@ document.querySelector("#clear-all").onclick = (e) => {
 
 // removes the url in the block-list
 removeUrl = (url) => {
-    chrome.storage.sync.remove(url.toString(), () => {
-    });
+    chrome.storage.sync.remove(url.toString());
 };
 
 // renders block-list on popup (UI)
@@ -46,4 +40,5 @@ displayBlockList = () => {
     });
 };
 
+// initial render
 displayBlockList();
