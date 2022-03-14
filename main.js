@@ -10,10 +10,10 @@ storeUrl = (url) => {
     });  
 };
 
-// adds current tab's url in block-list
+// adds current tab's url (origin) in block-list
 document.querySelector("#add-to-blocklist").onclick = () => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-        storeUrl(tabs[0].url);
+        storeUrl(new URL(tabs[0].url).origin);
     });
 }
 
