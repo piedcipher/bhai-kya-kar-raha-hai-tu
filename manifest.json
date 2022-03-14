@@ -17,5 +17,6 @@
     "permissions": [
         "activeTab",
         "storage"
-    ]
+    ],
+    "options_page": "options.html"
 }
