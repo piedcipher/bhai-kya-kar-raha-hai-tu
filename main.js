@@ -1,6 +1,6 @@
 // stores the url in the block-list
 storeUrl = (url) => {
-    if (!url || url.trim().length === 0 || url === "https://i.imgur.com/uNuKDAZ.jpg" || !url.startsWith("https://")) {
+    if (!url || url.trim().length === 0 || url === "https://i.imgur.com" || !url.startsWith("https://")) {
         return;
     }
     chrome.storage.sync.set({
