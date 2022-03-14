@@ -6,19 +6,15 @@ storeUrl = (url) => {
     chrome.storage.sync.set({
         [url]: url
     }, () => {
+        window.close();
     });  
 };
 
-// gets the current tab's url and executes the supplied function
-getCurrentTabThenExecute = (functionToExecute) => {
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-        functionToExecute(tabs[0].url);
-    });
-}
-
 // adds current tab's url in block-list
 document.getElementById("add-to-blocklist").onclick = (e) => {
-    getCurrentTabThenExecute(storeUrl);
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        storeUrl(tabs[0].url);
+    });
 }
 
 // opens block-list
