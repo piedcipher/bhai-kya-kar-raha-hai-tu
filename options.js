@@ -15,6 +15,13 @@ removeUrl = (url) => {
     chrome.storage.sync.remove(url.toString());
 };
 
+// renders current block image
+renderCurrentBlockImage = () => {
+    chrome.storage.local.get(["block-image"], (result) => {
+        document.querySelector("#block-image-view").src = result["block-image"] ?? "https://i.imgur.com/uNuKDAZ.jpg";
+    });
+};
+
 // renders block-list on popup (UI)
 displayBlockList = () => {
     // clears the block-list
@@ -40,9 +47,7 @@ displayBlockList = () => {
     });
 
     // renders current block image
-    chrome.storage.local.get(["block-image"], (result) => {
-        document.querySelector("#block-image-view").src = result["block-image"] ?? "https://i.imgur.com/uNuKDAZ.jpg";
-    });
+    renderCurrentBlockImage();
 };
 
 // initial render
@@ -73,5 +78,14 @@ document.querySelector("#save-block-image").onclick = (e) => {
         chrome.storage.local.get(["block-image"], (result) => {
             document.querySelector("#block-image-view").src = result["block-image"];
         });
+    });
+};
+
+// reset the block image to "Bhai Kya Kar Raha Hai Tu"
+document.querySelector("#reset-block-image").onclick = () => {
+    chrome.storage.local.set({
+        "block-image": null
+    }, () => {
+        renderCurrentBlockImage();
     });
 };
