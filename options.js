@@ -83,9 +83,12 @@ document.querySelector("#save-block-image").onclick = (e) => {
 
 // reset the block image to "Bhai Kya Kar Raha Hai Tu"
 document.querySelector("#reset-block-image").onclick = () => {
+    const response = confirm("Are you sure? It will set 'Bhai kya kar raha hai tu?' as the image.");
+    if (!response) return;
     chrome.storage.local.set({
         "block-image": null
     }, () => {
         renderCurrentBlockImage();
+        document.querySelector("#save-block-image").disabled = "true";
     });
 };
