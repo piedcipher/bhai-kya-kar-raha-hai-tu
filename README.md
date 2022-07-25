@@ -1,5 +1,7 @@
 # Bhai Kya Kar Raha Hai Tu
 
+<p><img src='https://img.shields.io/chrome-web-store/users/ieogbmemnnfdlkhlnnpfkhiokgaoacdg?color=%2376FF03' /> <img src='https://img.shields.io/chrome-web-store/v/ieogbmemnnfdlkhlnnpfkhiokgaoacdg?color=%230091EA' /> <img src='https://img.shields.io/chrome-web-store/rating/ieogbmemnnfdlkhlnnpfkhiokgaoacdg?color=%23FFEA00' /></p>
+
 <a href="https://chrome.google.com/webstore/detail/bhai-kya-kar-raha-hai-tu/ieogbmemnnfdlkhlnnpfkhiokgaoacdg"><img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png"></a>
 
 This extension shows `Bhai Kya Kar Raha Hai Tu` meme when user opens a block-listed website. :shark: :ghost: You can also set a custom-image which is shown when you visit a block-listed website.
